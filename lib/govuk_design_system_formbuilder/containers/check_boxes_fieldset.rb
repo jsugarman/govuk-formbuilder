@@ -5,7 +5,7 @@ module GOVUKDesignSystemFormBuilder
       include Traits::Hint
 
       def initialize(builder, object_name, attribute_name, hint:, legend:, caption:, small:, classes:, form_group:, multiple:, &block)
-        super(builder, object_name, attribute_name, &block)
+        super(builder, object_name, attribute_name)
 
         @legend        = legend
         @caption       = caption
@@ -14,7 +14,7 @@ module GOVUKDesignSystemFormBuilder
         @classes       = classes
         @form_group    = form_group
         @multiple      = multiple
-        @block_content = capture { block.call }
+        # @block_content = capture { block.call }
       end
 
       def html

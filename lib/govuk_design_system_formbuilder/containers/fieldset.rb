@@ -4,7 +4,7 @@ module GOVUKDesignSystemFormBuilder
       include Traits::HTMLAttributes
 
       def initialize(builder, object_name = nil, attribute_name = nil, legend: {}, caption: {}, described_by: nil, **kwargs, &block)
-        super(builder, object_name, attribute_name, &block)
+        super(builder, object_name, attribute_name)
 
         @legend          = legend
         @caption         = caption

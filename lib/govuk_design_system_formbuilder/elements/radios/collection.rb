@@ -7,7 +7,7 @@ module GOVUKDesignSystemFormBuilder
         include Traits::Supplemental
 
         def initialize(builder, object_name, attribute_name, collection, value_method:, text_method:, hint_method:, hint:, legend:, caption:, inline:, small:, bold_labels:, classes:, form_group:, include_hidden:, &block)
-          super(builder, object_name, attribute_name, &block)
+          super(builder, object_name, attribute_name)
 
           @collection     = collection
           @value_method   = value_method

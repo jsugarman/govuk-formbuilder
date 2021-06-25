@@ -10,7 +10,7 @@ module GOVUKDesignSystemFormBuilder
       include Traits::HTMLAttributes
 
       def initialize(builder, object_name, attribute_name, hint:, label:, caption:, form_group:, **kwargs, &block)
-        super(builder, object_name, attribute_name, &block)
+        super(builder, object_name, attribute_name)
 
         @label           = label
         @caption         = caption

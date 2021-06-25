@@ -17,7 +17,7 @@ module GOVUKDesignSystemFormBuilder
         @validate             = validate
         @disabled             = disabled
         @html_attributes      = kwargs
-        @block_content        = capture { block.call } if block_given?
+        # @block_content        = capture { block.call } if block_given?
       end
 
       def html
