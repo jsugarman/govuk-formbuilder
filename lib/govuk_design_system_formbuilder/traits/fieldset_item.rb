@@ -62,7 +62,7 @@ module GOVUKDesignSystemFormBuilder
       end
 
       def conditional_content(&block)
-        if (conditional_block_content = block_given? && (capture { block.call }).presence)
+        if (conditional_block_content = block_given? && (@block_content).presence)
           @conditional    = conditional_container(conditional_block_content)
           @conditional_id = conditional_id
         end
