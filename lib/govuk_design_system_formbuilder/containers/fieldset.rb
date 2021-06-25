@@ -13,9 +13,10 @@ module GOVUKDesignSystemFormBuilder
         @html_attributes = kwargs
       end
 
-      def html
+      def html(&block)
         tag.fieldset(**attributes(@html_attributes)) do
-          safe_join([legend_element, (@block_content || yield)])
+          @block_content ||= block.call
+          safe_join([legend_element, @block_content])
         end
       end
 
