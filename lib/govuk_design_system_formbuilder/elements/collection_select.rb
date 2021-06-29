@@ -9,7 +9,7 @@ module GOVUKDesignSystemFormBuilder
       include Traits::Select
 
       def initialize(builder, object_name, attribute_name, collection, value_method:, text_method:, hint:, label:, caption:, form_group:, options: {}, **kwargs, &block)
-        super(builder, object_name, attribute_name, &block)
+        super(builder, object_name, attribute_name)
 
         @collection      = collection
         @value_method    = value_method

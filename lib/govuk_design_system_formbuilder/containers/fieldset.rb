@@ -4,7 +4,7 @@ module GOVUKDesignSystemFormBuilder
       include Traits::HTMLAttributes
 
       def initialize(builder, object_name = nil, attribute_name = nil, legend: {}, caption: {}, described_by: nil, **kwargs, &block)
-        super(builder, object_name, attribute_name, &block)
+        super(builder, object_name, attribute_name)
 
         @legend          = legend
         @caption         = caption
@@ -13,9 +13,10 @@ module GOVUKDesignSystemFormBuilder
         @html_attributes = kwargs
       end
 
-      def html
+      def html(&block)
         tag.fieldset(**attributes(@html_attributes)) do
-          safe_join([legend_element, (@block_content || yield)])
+          @block_content ||= block.call
+          safe_join([legend_element, @block_content])
         end
       end
 

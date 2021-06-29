@@ -11,7 +11,7 @@ module GOVUKDesignSystemFormBuilder
       MULTIPARAMETER_KEY = { day: 3, month: 2, year: 1 }.freeze
 
       def initialize(builder, object_name, attribute_name, legend:, caption:, hint:, omit_day:, form_group:, wildcards:, date_of_birth: false, **kwargs, &block)
-        super(builder, object_name, attribute_name, &block)
+        super(builder, object_name, attribute_name)
 
         @legend          = legend
         @caption         = caption
