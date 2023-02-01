@@ -33,7 +33,7 @@ Gem::Specification.new do |s|
   end
 
   s.add_development_dependency("rubocop-govuk", "~> 4.0.0")
-  s.add_development_dependency("pry", "~> 0.13.0")
+  s.add_development_dependency("pry", "~> 0.14.2")
   s.add_development_dependency("pry-byebug", "~> 3.9", ">= 3.9.0")
   s.add_development_dependency("rspec-html-matchers", "~> 0")
   s.add_development_dependency("rspec-rails", "~> 5.0")
