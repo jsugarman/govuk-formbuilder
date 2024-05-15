@@ -414,7 +414,7 @@ describe GOVUKDesignSystemFormBuilder::FormBuilder do
       end
     end
 
-    context 'extra attributes' do
+    context 'when extra attributes are supplied' do
       before { object.valid? }
 
       it_behaves_like 'a field that allows extra HTML attributes to be set' do
@@ -438,6 +438,48 @@ describe GOVUKDesignSystemFormBuilder::FormBuilder do
         expect(subject).to have_tag("div", with: { class: "govuk-error-summary" }) do
           with_tag("div", with: { class: "govuk-error-summary__body" }) do
             with_tag(custom_content_tag, text: custom_content_text)
+          end
+        end
+      end
+    end
+
+    context 'when a presenter is specified' do
+      subject { builder.send(*args, presenter: error_presenter.new) }
+
+      context 'with summary_error_for method' do
+        let(:error_presenter) do
+          Class.new do
+            def summary_error_for(attribute)
+              "#{attribute} is foobar!"
+            end
+          end
+        end
+
+        before { object.validate }
+
+        specify 'the presenter custom messages should be present in the error summary' do
+          expect(subject).to have_tag('ul', with: { class: %w(govuk-list govuk-error-summary__list) }) do
+            expect(subject).to have_tag('li', text: 'favourite_colour is foobar!')
+            expect(subject).to have_tag('li', text: 'projects is foobar!')
+          end
+        end
+      end
+
+      context 'without summary_error_for method' do
+        let(:error_presenter) do
+          Class.new do
+            def not_a_duck(attribute)
+              "#{attribute} is foobar!"
+            end
+          end
+        end
+
+        before { object.validate }
+
+        specify 'the default summary error messages should be present in the error summary' do
+          expect(subject).to have_tag('ul', with: { class: %w(govuk-list govuk-error-summary__list) }) do
+            expect(subject).to have_tag('li', text: 'Choose a favourite colour')
+            expect(subject).to have_tag('li', text: 'Select at least one project')
           end
         end
       end
